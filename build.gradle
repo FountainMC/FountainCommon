@@ -1,0 +1,102 @@
+buildscript {
+    ext.kotlin_version = '1.0.2'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            name = 'forge'
+            url = 'http://files.minecraftforge.net/maven'
+        }
+        maven {
+            name = 'minecrell'
+            url = 'https://repo.minecrell.net/releases'
+        }
+        maven {
+            name = 'sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+    }
+    dependencies {
+        classpath 'net.minecrell:VanillaGradle:2.0.3_1'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.spongepowered:mixingradle:0.3-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'java'
+
+    id 'idea'
+    id 'eclipse'
+}
+
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+// Plugins for IDE project generation
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+// Apply 'VanillaGradle'
+// Compared to the regular tweaker-server plugin, FountainCommon has all run tasks disabled
+// and the Minecraft workspace defined as "provided" so they won't conflict with the implementation
+apply plugin: 'net.minecrell.vanilla.server.library'
+apply plugin: 'org.spongepowered.mixin'
+
+defaultTasks 'clean'
+
+// Java 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'org.fountainmc'
+archivesBaseName = 'fountain-common'
+version = '1.9.4-alpha1-SNAPSHOT'
+ext.url = 'https://fountainmc.org/'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://repo.spongepowered.org/maven'
+    }
+    maven {
+        url 'https://repo.techcable.net/content/groups/public'
+    }
+}
+
+dependencies {
+    compile "org.fountainmc:fountain-api:${project.version}"
+    compile "org.reflections:reflections:0.9.10"
+    provided "org.projectlombok:lombok:1.16.8"
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile('org.spongepowered:mixin:0.5.7-SNAPSHOT') {
+        exclude module: 'guava'
+    }
+}
+
+// Use the fancy-schmancy mixins
+sourceSets {
+    main {
+        refMap = 'mixins.fountain.refmap.json'
+    }
+}
+
+minecraft {
+    version = '1.9.4'
+    mappings = 'snapshot_nodoc_20160623'
+    atSource sourceSets.main
+
+    makeObfSourceJar = false // We don't use the obfuscated dev jar
+}
+
+// Use a fancy_shmancy access transformer
+ext.ats = ['common_at.cfg']
+
+
+// Reobfuscate to SRG mappings
+reobf.jar.mappingType = 'SEARGE'
+
