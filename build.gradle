@@ -1,6 +1,5 @@
 buildscript {
     ext.kotlin_version = '1.0.2'
-
     repositories {
         mavenCentral()
         jcenter()
@@ -10,7 +9,7 @@ buildscript {
         }
         maven {
             name = 'minecrell'
-            url = 'https://repo.minecrell.net/releases'
+            url = 'http://repo.minecrell.net/releases'
         }
         maven {
             name = 'sponge'
@@ -68,14 +67,18 @@ repositories {
 }
 
 dependencies {
-    compile "org.fountainmc:fountain-api:${project.version}"
-    compile "org.reflections:reflections:0.9.10"
-    provided "org.projectlombok:lombok:1.16.8"
+    compile project(':FountainAPI')
+    compile 'org.reflections:reflections:0.9.10'
+    provided 'org.projectlombok:lombok:1.16.8'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile('org.spongepowered:mixin:0.5.7-SNAPSHOT') {
         exclude module: 'guava'
     }
+}
+
+project(':FountainAPI') {
+    apply from: rootProject.file('api.gradle')
 }
 
 // Use the fancy-schmancy mixins

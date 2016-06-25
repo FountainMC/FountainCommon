@@ -372,7 +372,7 @@ public class Metrics {
      */
     private void postPlugin(final boolean isPing) throws IOException {
         String serverVersion = implementation.getVersion();
-        int playersOnline = implementation.getOnlinePlayers();
+        int playersOnline = implementation.getOnlinePlayerCount();
 
         // END server software specific section -- all code below does not use
         // any code outside of this class / Java
