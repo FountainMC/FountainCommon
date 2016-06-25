@@ -1,4 +1,4 @@
-package org.fountainmc.common.mixins.world.block
+package org.fountainmc.common.world.block
 
 import com.google.common.base.Preconditions.checkArgument
 import com.google.common.base.Preconditions.checkNotNull
@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState
 import org.fountainmc.api.Direction
 import org.fountainmc.api.Server
 import org.fountainmc.api.world.block.Chest
+import org.fountainmc.common.mixins.world.block.MixinBlockState
 import org.fountainmc.common.toFountainDirection
 import org.fountainmc.common.toNMSDirection
 

@@ -3,6 +3,7 @@ package org.fountainmc.common.mixins.world.block
 import net.minecraft.block.state.BlockStateBase
 import net.minecraft.block.state.IBlockState
 import org.fountainmc.api.Fountain
+import org.fountainmc.common.world.block.WetBlockState
 import org.spongepowered.asm.mixin.Mixin
 
 @Mixin(BlockStateBase::class)

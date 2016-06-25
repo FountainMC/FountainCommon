@@ -1,4 +1,4 @@
-package org.fountainmc.common.mixins.world.block;
+package org.fountainmc.common.world.block;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

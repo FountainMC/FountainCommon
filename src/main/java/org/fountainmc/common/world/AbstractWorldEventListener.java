@@ -1,4 +1,4 @@
-package org.fountainmc.common.mixins.world;
+package org.fountainmc.common.world;
 
 import javax.annotation.Nullable;
 

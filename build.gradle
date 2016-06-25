@@ -93,9 +93,6 @@ minecraft {
     makeObfSourceJar = false // We don't use the obfuscated dev jar
 }
 
-// Use a fancy_shmancy access transformer
-ext.ats = ['common_at.cfg']
-
 
 // Reobfuscate to SRG mappings
 reobf.jar.mappingType = 'SEARGE'

@@ -13,6 +13,7 @@ import org.fountainmc.api.Material
 import org.fountainmc.api.Server
 import org.fountainmc.api.enchantments.EnchantmentType
 import org.fountainmc.api.entity.EntityType
+import org.fountainmc.api.entity.Player
 import org.fountainmc.api.inventory.item.ItemFactory
 import org.fountainmc.common.AsyncCatcher.verifyNotAsync
 import org.fountainmc.common.FountainImplementation
@@ -23,6 +24,7 @@ import org.spongepowered.asm.mixin.Shadow
 import org.spongepowered.asm.mixin.injection.At
 import org.spongepowered.asm.mixin.injection.Inject
 import java.net.InetSocketAddress
+import java.util.Collections.unmodifiableList
 
 @Mixin(MinecraftServer::class)
 abstract class MixinMinecraftServer(internal val launchArguments: ImmutableList<String>, val fountainImplementation: FountainImplementation) : Server {
@@ -141,7 +143,11 @@ abstract class MixinMinecraftServer(internal val launchArguments: ImmutableList<
         @Shadow // This shadows getPlayerList()
         get
 
-    override fun getOnlinePlayers(): Int {
+    override fun getOnlinePlayers(): List<Player> {
+        return unmodifiableList(playerList.playerList as List<Player>)
+    }
+
+    override fun getOnlinePlayerCount(): Int {
         return playerList.maxPlayers
     }
 }

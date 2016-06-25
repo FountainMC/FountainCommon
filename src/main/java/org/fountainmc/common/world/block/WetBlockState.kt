@@ -1,4 +1,4 @@
-package org.fountainmc.common.mixins.world.block
+package org.fountainmc.common.world.block
 
 import com.google.common.base.Verify
 import com.google.common.collect.ImmutableList

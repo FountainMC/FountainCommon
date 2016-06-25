@@ -1,4 +1,4 @@
-package org.fountainmc.common.mixins.block;
+package org.fountainmc.common.mixins.world.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
