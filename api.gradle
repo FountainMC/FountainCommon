@@ -5,7 +5,7 @@ targetCompatibility = 1.8
 
 group = 'org.fountainmc'
 archivesBaseName = 'fountain-api'
-version = '1.9.4-alpha1-SNAPSHOT'
+version = '1.10.2-alpha1-SNAPSHOT'
 
 repositories {
     mavenCentral()

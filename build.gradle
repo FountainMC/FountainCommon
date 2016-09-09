@@ -52,7 +52,7 @@ targetCompatibility = 1.8
 
 group = 'org.fountainmc'
 archivesBaseName = 'fountain-common'
-version = '1.9.4-alpha1-SNAPSHOT'
+version = '1.10.2-alpha1-SNAPSHOT'
 ext.url = 'https://fountainmc.org/'
 
 repositories {
@@ -89,8 +89,8 @@ sourceSets {
 }
 
 minecraft {
-    version = '1.9.4'
-    mappings = 'snapshot_nodoc_20160623'
+    version = '1.10.2'
+    mappings = 'snapshot_nodoc_20160908'
     atSource sourceSets.main
 
     makeObfSourceJar = false // We don't use the obfuscated dev jar
